@@ -7,19 +7,23 @@ async function getAllProducts() {
 
 
 async function getProductById(id) {
-    const [rows] = await pool.query('SELECT * FROM products WHERE id = ?', [id]);
-    return rows;
+    const [rows] = await pool.query(
+        'SELECT id, name, price, description, stock, image, created_at FROM products WHERE id = ?',
+        [id]
+    );
+
+    return rows[0];
 }
 
 async function createProducts(product) {
-    const {name,description,price,stock} = product;
-    const [result] = await pool.query('INSERT INTO products (name,description,price,stock) VALUES (?, ?, ?, ?)', [name, description, price, stock]);
+    const {name,description,price,stock,image} = product;
+    const [result] = await pool.query('INSERT INTO products (name,description,price,stock,image) VALUES (?, ?, ?, ?, ?)', [name, description, price, stock, image]);
     return getProductById(result.insertId);
 }
 
 async function updateProduct(id, product) {
-    const {name,description,price,stock} = product;
-    await pool.query('UPDATE products SET name = ?, description = ?, price = ?, stock = ? WHERE id = ?', [name, description, price, stock, id]);
+    const {name,description,price,stock,image} = product;
+    await pool.query('UPDATE products SET name = ?, description = ?, price = ?, stock = ?, image = ? WHERE id = ?', [name, description, price, stock, image, id]);
     return getProductById(id);
 }
 
