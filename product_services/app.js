@@ -20,6 +20,19 @@ app.get('/health', (req, res) => {
 
 app.use("/products", productRouters);
 
+// Error handler untuk ukuran request terlalu besar
+app.use((err, req, res, next) => {
+    if (err.type === 'entity.too.large') {
+        return res.status(413).json({
+            message: "Gambar terlalu besar. Maksimal ukuran 3 MB."
+        });
+    }
+
+    res.status(500).json({
+        message: "Terjadi kesalahan pada server."
+    });
+});
+
 //unknow path
 app.use((req,res) => {
     res.status(404).json({
