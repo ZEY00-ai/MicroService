@@ -7,6 +7,9 @@ use App\Models\CartItem;
 
 class CartService
 {
+    public function __construct(private ProductService $productService)
+    {
+    }
     public function getCart(int $userId) : array
     {
         $items = CartItem::ForUser($userId)->get();
@@ -20,15 +23,15 @@ class CartService
 
     public function addItem(int $userId, int $productId, int $quantity) : CartItem
     {
+        if(! $this->productService->getProduct($productId)){
+            throw new CartItemNotFoundException($productId);
+        }
         $item = CartItem::firstOrNew([
             'user_id' => $userId,
             'product_id' => $productId,
         ]);
-
         $item->quantity = ($item->exists ? $item->quantity : 0) + $quantity;
-
         $item->save();
-
         return $item;
     }
 
