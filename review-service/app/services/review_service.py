@@ -11,28 +11,29 @@ def _parse_id(review_id):
     return ObjectId(review_id)
 
 def get_product_reviews(product_id):
-    return{
+    return {
         "product_id": product_id,
         "summary": review_model.rating_summary(product_id),
         "reviews": review_model.find_by_product(product_id),
     }
 
 def get_review(review_id):
-    review =  review_model.find_by_id(_parse_id(review_id))
+    review = review_model.find_by_id(_parse_id(review_id))
     if review is None:
         raise ReviewNotFoundError(review_id)
     return review
 
 def create_review(data):
-    if not product_client.product_exists(data["prouct_id"]):
+    if not product_client.product_exists(data["product_id"]):
         raise ProductNotFoundError(data["product_id"])
+    
     now = datetime.now(timezone.utc)
-    ducument = {**data, "created_at": now, "updated_at": now}
+    document = {**data, "created_at": now, "updated_at": now}
     try:
-        return review_model.insert(ducument)
+        return review_model.insert(document)
     except DuplicateKeyError:
-        raise DuplicateReviewError(data["user_id"],data["product_id"])
-
+        raise DuplicateReviewError(data["user_id"], data["product_id"])
+    
 def update_review(review_id, data):
     fields = {**data, "updated_at": datetime.now(timezone.utc)}
     review = review_model.update(_parse_id(review_id), fields)

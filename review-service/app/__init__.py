@@ -8,7 +8,7 @@ def create_app():
     load_dotenv
 
     app = Flask(__name__)
-    app.logger.setLevel(logging.Info)
+    app.logger.setLevel(logging.INFO)
 
     init_db()
     app.register_blueprint(review_bp)

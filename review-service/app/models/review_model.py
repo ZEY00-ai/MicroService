@@ -22,7 +22,7 @@ def find_by_product(product_id):
     return [_serialize(doc) for doc in cursor]
 
 def find_by_id(object_id):
-    return _serialize(get_collection().find_one({"id":object_id}))
+    return _serialize(get_collection().find_one({"_id":object_id}))
 
 def insert(document):
     result = get_collection().insert_one(document)
@@ -38,7 +38,7 @@ def update(object_id, fields):
 
 def delete(object_id):
     return get_collection().delete_one({
-        "id": object_id
+        "_id": object_id
     }).deleted_count > 0
 
 def rating_summary(product_id):
