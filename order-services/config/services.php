@@ -14,6 +14,16 @@ return [
     |
     */
 
+    'product' => [
+        'url' => env('PRODUCT_SERVICE_URL'),
+        'timeout'=> (int) env('HTTP_TIMEOUT', 5),
+    ],
+
+    'cart' => [
+        'url'=> env('CART_SERVICE_URL'),
+        'timeout'=> (int) env('HTTP_TIMEOUT', 5),
+    ],
+
     'postmark' => [
         'key' => env('POSTMARK_API_KEY'),
     ],
