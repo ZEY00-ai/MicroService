@@ -3,44 +3,44 @@
 namespace App\Clients;
 
 use App\Exceptions\ServiceUnavailableException;
-use GuzzleHttp\Exception\ConnectException;
+use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
 class ProductClient
 {
-    //ambil product
+    // ambil satu produk; null jika tidak ditemukan (404)
     public function find(int $id): ?array
     {
         try {
-            $response = Http::find(config('services.cart.url'))
-                ->timeout(config('services.cart.timeout'))
+            $response = Http::baseUrl(config('services.product.url'))
+                ->timeout(config('services.product.timeout'))
                 ->acceptJson()
                 ->get("/products/{$id}");
-        }catch (ConnectException $e) {
-            Log::error('product service tidak dapat di hubungi',[
+        } catch (ConnectionException $e) {
+            Log::error('Product service tidak dapat dihubungi', [
                 'product_id' => $id,
-                'error' => $e->getMessage(),
+                'error'      => $e->getMessage(),
             ]);
 
             throw new ServiceUnavailableException(
-                'product service tidak dapat di hubungi, dan cobalgi nanti',0,$e
+                'Product service tidak dapat dihubungi, coba lagi nanti', 0, $e
             );
         }
 
-        if ($response->status() === 404){
+        if ($response->status() === 404) {
             return null;
         }
 
-        if ($response->failed()){
-            log::error('product service mengembalikan error',[
-                'product_id'=> $id,
-                'status' => $response->status(),
-                'body' => $response->body(),
+        if ($response->failed()) {
+            Log::error('Product service mengembalikan error', [
+                'product_id' => $id,
+                'status'     => $response->status(),
+                'body'       => $response->body(),
             ]);
 
             throw new ServiceUnavailableException(
-                'product service sedang bermalasah, coba lagi nanti'
+                'Product service bermasalah, coba lagi nanti'
             );
         }
 

@@ -95,9 +95,9 @@ services:
       timeout: 5s
 
   order-service:
-    build: ./order-service
+    build: ./order-services
     ports:
-      -"3003:3003"
+      - "3003:3003"
     environment:
       - APP_ENV=local
       - APP_DEBUG=true
