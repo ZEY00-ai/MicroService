@@ -127,7 +127,7 @@ services:
       - MYSQL_PASSWORD=apppassword
       - MYSQL_ROOT_PASSWORD=rootpassword
     ports:
-      - "3006:3007"
+      - "3307:3306"
     volumes:
       - order-db-data:/var/lib/mysql
     healthcheck:
