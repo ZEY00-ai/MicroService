@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Log;
 
 class ProductClient
 {
-    // ambil satu produk; null jika tidak ditemukan (404)
+    // ambil satu produk jika tidak ditemukan null (404)
     public function find(int $id): ?array
     {
         try {
