@@ -23,7 +23,7 @@ VALUES
         'Mouse Wireless',
         'Mouse wireless dengan sensor optical',
         350000,
-        1,
+        20,
         'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+/F2sAAAAASUVORK5CYII='
     ),
     (
