@@ -31,6 +31,6 @@ class orderItem extends Model
 
     public function order(): BelongsTo
     {
-        return $this->belongsTo(orders::class);
+        return $this->belongsTo(orders::class, 'order_id');
     }
 }

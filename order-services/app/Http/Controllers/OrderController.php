@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Log;
 use Psy\Util\Json;
 use Throwable;
 
-class OrdersController extends Controller
+class OrderController extends Controller
 {
     public function __construct(private OrderService $orderService) {}
 

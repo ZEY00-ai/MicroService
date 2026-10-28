@@ -21,7 +21,7 @@ class orders extends Model
 
    public function items()
    {
-    return $this->hasMany(orderItem::class);
+    return $this->hasMany(orderItem::class,'order_id');
    }
 
    protected function serializeDate(DateTimeInterface $date) : string

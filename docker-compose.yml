@@ -74,6 +74,7 @@ services:
       - DB_USERNAME=appuser
       - DB_PASSWORD=apppassword
       - LOG_CHANNEL=stderr
+      - PRODUCT_SERVICE_URL=http://product-service:3000
     depends_on:
       cart-db:
         condition: service_healthy
