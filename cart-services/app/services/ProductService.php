@@ -6,16 +6,16 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Throwable;
 
-
 class ProductService
 {
     public function getProduct(int $productId): ?array
     {
         try {
-            $response = Http::baseUrl(config('service.product.url'))
+            $response = Http::baseUrl(config('services.product.url'))
+                ->timeout(5)
                 ->get("/products/{$productId}");
 
-            if ($response->successfull() && isset($response->json()['data'])) {
+            if ($response->successful() && isset($response->json()['data'])) {
                 return $response->json()['data'];
             }
 
