@@ -15,20 +15,20 @@ VALUES
     (
         'Keyboard Mekanikal',
         'Keyboard mekanikal switch blue',
-        50000,
+        450000,
         25,
         'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+/F2sAAAAASUVORK5CYII='
     ),
     (
         'Mouse Wireless',
         'Mouse wireless dengan sensor optical',
-        350000,
-        20,
+        150000,
+        40,
         'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+/F2sAAAAASUVORK5CYII='
     ),
     (
-        'Headset Gaming',
-        'Headset gaming dengan kualitas audio terbaik',
+        'Monitor 24 Inch',
+        'Monitor 24 Inch dengan layar yg jernih',
         800000,
         10,
         'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+/F2sAAAAASUVORK5CYII='
