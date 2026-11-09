@@ -23,7 +23,7 @@ export async function request(baseUrl,path,{method = 'GET', body} = {})
                 ...(body ? {'Content-Type': 'application/json'} : {}),
             },
             body: body ? JSON.stringify(body) : undefined,
-            signal: controller.signal
+            signal: controller.signal   
         });
 
         const payload = await response.json().catch(() => null)
