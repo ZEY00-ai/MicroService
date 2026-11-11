@@ -6,8 +6,19 @@ const rupiah = new Intl.NumberFormat('id-ID',{
 
 export const formatRupiah = (value) => rupiah.format(Number(value))
 
-export function describeError(error) {
-    const detail = error.errors ? Object.values(error.errors).flat() : []
+export function getProductImage(image) {
+    if (image.startsWith('data:') || image.startsWith('http')) return image
+    return `data:image/png;base64,${image}`
+}
 
-    return detail.length ? `${error.message}: ${details.join(', ')}` : error.message
+export function describeError(error) {
+    const errors = error?.errors ?? error?.error
+    const detail = errors
+        ? typeof errors === 'object'
+            ? Object.values(errors).flat()
+            : [errors]
+        : []
+
+    const message = error?.message || 'Terjadi kesalahan.'
+    return detail.length ? `${message}: ${detail.join(', ')}` : message
 }

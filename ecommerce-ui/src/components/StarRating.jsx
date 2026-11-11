@@ -1,4 +1,4 @@
-export default function StartRating({ avarage, total, compatc = false }) {
+export default function StartRating({ average, total, compact = false }) {
   if (!total) return <span className="muted">Belum Ada Ulasan </span>;
 
   const filled = Math.round(average);
