@@ -134,4 +134,45 @@ Service melempar exception, lalu controller menerjemahkannya menjadi kode `404`,
 
 ## 6. Desain UI
 
-> 🚧 Desain menyusul, menggunakan React.
+Frontend dibuat dengan **React.js (Vite)** di folder `ecommerce-ui`. Antarmukanya memanggil keempat service lewat REST API.
+
+### Referensi desain
+
+Tata letak halaman keranjang terinspirasi dari desain
+[E-Commerce Dashboard – Cart List UI & UX](https://dribbble.com/shots/27113759-E-Commerce-Dashboard-Cart-List-UI-UX) di Dribbble, karya Saruphalder. Desain tersebut hanya dipakai sebagai referensi tampilan. Seluruh kode dan komponen ditulis sendiri.
+
+### Teknologi
+
+| Komponen | Teknologi |
+|----------|-----------|
+| Framework | React.js |
+| Build tool / dev server | Vite |
+| Port | `5173` |
+| Sumber data | `product-service`, `cart-service`, `review-service`, `order-service` |
+
+### Halaman
+
+| Halaman | Fungsi | Service yang dipanggil |
+|---------|--------|------------------------|
+| Daftar produk | Menampilkan produk, harga, dan stok | `product-service` |
+| Detail produk | Detail, tombol "Masukkan ke keranjang", ulasan dan rating bintang | `product-service`, `cart-service`, `review-service` |
+| Keranjang | Daftar item, ubah jumlah, hapus item, tombol checkout | `cart-service` |
+| Pesanan | Riwayat pesanan dan pembayaran | `order-service` |
+
+> Sesuaikan tabel halaman dengan halaman yang benar-benar sudah ada di UI-mu.
+
+### Menjalankan UI
+
+UI ikut berjalan lewat Docker Compose (service `main-app`):
+
+```bash
+docker compose up --build
+```
+
+Lalu buka `http://localhost:5173`.
+
+### Tangkapan layar
+
+| Detail produk | Keranjang |
+|:-------------:|:---------:|
+<!-- | ![Detail produk](docs/screenshots/product-detail.png) | ![Keranjang](docs/screenshots/cart.png) | -->
