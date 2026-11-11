@@ -1,4 +1,22 @@
 services:
+  main-app:
+    build:
+      context: ./ecommerce-ui
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    volumes: 
+    - ./ecommerce-ui:/app
+    - /app/node_modules
+    command: npm run dev -- --host 0.0.0.0
+    depends_on:
+      product-service:
+        condition: service_started
+      cart-service:
+        condition: service_started
+      review-service:
+        condition: service_started
+
   product-service:
     build: ./product_services
     ports:
